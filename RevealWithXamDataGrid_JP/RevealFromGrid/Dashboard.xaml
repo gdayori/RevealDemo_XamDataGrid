@@ -1,0 +1,89 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RevealFromGrid"
+        xmlns:vm="clr-namespace:RevealFromGrid.ViewModel" xmlns:ig="http://schemas.infragistics.com/xaml" xmlns:Custom="http://infragistics.com/DataPresenter" x:Class="RevealFromGrid.Dashboard"
+        xmlns:sdk="clr-namespace:Infragistics.Sdk;assembly=RVUI.WPF"
+        mc:Ignorable="d"
+        Title="Sales Dashboard in this year" Height="600" Width="1000"
+        >
+    <Window.DataContext>
+        <vm:DashboardViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <sdk:RevealView x:Name="revealView1"/>
+
+        <!--<ig:XamTileManager>
+            <ig:XamTileManager.NormalModeSettings>
+                <ig:NormalModeSettings TileLayoutOrder="UseExplicitRowColumnOnTile"
+                                       VerticalTileAreaAlignment="Stretch"
+                                       HorizontalTileAreaAlignment="Stretch">
+                    <ig:NormalModeSettings.TileConstraints>
+                        <ig:TileConstraints PreferredWidth="400" PreferredHeight="300"/>
+                    </ig:NormalModeSettings.TileConstraints>
+                </ig:NormalModeSettings>
+            </ig:XamTileManager.NormalModeSettings>
+
+            <ig:XamTile
+                Header="年間製品別売上比率"
+                ig:XamTileManager.Column="0"
+                ig:XamTileManager.Row="0" 
+                ig:XamTileManager.ColumnSpan="1"
+                ig:XamTileManager.RowSpan="1">
+                <ig:XamPieChart ExplodedRadius="0.3" LabelExtent="40" LabelMemberPath="ProductName" LabelsPosition="OutsideEnd" LeaderLineType="Arc" ItemsSource="{Binding SalesAmountByProductData}" StartAngle="270" ValueMemberPath="AmountOfSale" Brushes="#FF33A3D3 #FF40B3A7 #FFFFED75 #FFFDCD87 #FFFF8581 #FFFF615D #FF6C7AC6 #FF3F51B5 #FF9799AA #FF70758D" Outlines="#FF247294 #FF2D7D75 #FFB2A652 #FFB1905E #FFB25D5A #FFB24441 #FF4C558B #FF2C397F #FF6A6B77 #FF4E5263"  />
+            </ig:XamTile>
+
+            <ig:XamTile
+                Header="年間売り上げ"
+                ig:XamTileManager.Column="1"
+                ig:XamTileManager.Row="0" 
+                ig:XamTileManager.ColumnSpan="1"
+                ig:XamTileManager.RowSpan="1">
+                <StackPanel VerticalAlignment="Center" >
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="80" Text="{Binding TotalSalesThisYear, StringFormat=$ \{0\} M}"/>
+                    <ig:XamBulletGraph Background="#00FFFFFF" BackingBrush="#00FFFFFF" FontBrush="#E13F51B5" Interval="20" MaximumValue="150" TargetValue="{Binding SalesTargetThisYear}" Value="{Binding TotalSalesThisYear}" TargetValueBrush="#FFFF3B37" ValueBrush="#FFFF7123" ValueInnerExtent="0.4" ValueOuterExtent="0.75" VerticalAlignment="Center" RangeBrushes="#333F51B5 #503F51B5 #6D3F51B5 #8A3F51B5 #A73F51B5 #C43F51B5 #E13F51B5" RangeOutlines="#00FFFFFF" >
+                        <ig:XamBulletGraph.Ranges>
+                            <ig:XamLinearGraphRange EndValue="50" InnerEndExtent="0.3" InnerStartExtent="0.3" OuterEndExtent="0.85" OuterStartExtent="0.85" StartValue="0" />
+                            <ig:XamLinearGraphRange EndValue="100" InnerEndExtent="0.3" InnerStartExtent="0.3" OuterEndExtent="0.85" OuterStartExtent="0.85" StartValue="50" />
+                            <ig:XamLinearGraphRange EndValue="150" InnerEndExtent="0.3" InnerStartExtent="0.3" OuterEndExtent="0.85" OuterStartExtent="0.85" StartValue="100" />
+                        </ig:XamBulletGraph.Ranges>
+                    </ig:XamBulletGraph>
+                </StackPanel>
+            </ig:XamTile>
+
+            <ig:XamTile
+                Header="取引上位30"
+                ig:XamTileManager.Column="2"
+                ig:XamTileManager.Row="0" 
+                ig:XamTileManager.ColumnSpan="1"
+                ig:XamTileManager.RowSpan="2">
+                <Custom:XamDataGrid AutoFit="True" DataSource="{Binding Path=Top30LargeDeals}" >
+                    <Custom:XamDataGrid.FieldLayoutSettings>
+                        <Custom:FieldLayoutSettings AllowAddNew="False" AllowClipboardOperations="None" AutoGenerateFields="False" AllowDelete="False" />
+                    </Custom:XamDataGrid.FieldLayoutSettings>
+                    <Custom:XamDataGrid.FieldSettings>
+                        <Custom:FieldSettings AllowEdit="True" AllowGroupBy="True" FilterClearButtonVisibility="Visible" IsAutoEditModeEnabled="False" />
+                    </Custom:XamDataGrid.FieldSettings>
+                    <Custom:XamDataGrid.FieldLayouts>
+                        <Custom:FieldLayout Key="Sale">
+                            <Custom:DateTimeField Name="Date" />
+                            <Custom:TextField Label="Sales Person" Name="SalesPerson" />
+                            <Custom:CurrencyField Label="Amount Of Sale" Name="AmountOfSale" />
+                        </Custom:FieldLayout>
+                    </Custom:XamDataGrid.FieldLayouts>
+                </Custom:XamDataGrid>
+            </ig:XamTile>
+
+            <ig:XamTile
+                Header="月別売り上げ"
+                ig:XamTileManager.Column="0"
+                ig:XamTileManager.Row="1" 
+                ig:XamTileManager.ColumnSpan="2"
+                ig:XamTileManager.RowSpan="1" >
+                <ig:XamCategoryChart ChartType="Auto" ItemsSource="{Binding Path=MonthlySalesAmount}" TrendLineType="CubicFit" XAxisInterval="1" Brushes="#FF7446B9 #FF9FB328 #FFF96232 #FF2E9CA6 #FFDC3F76 #FFFF9800 #FF3F51B5 #FF439C47 #FF795548 #FF9A9A9A" Outlines="#FF7446B9 #FF9FB328 #FFF96232 #FF2E9CA6 #FFDC3F76 #FFFF9800 #FF3F51B5 #FF439C47 #FF795548 #FF9A9A9A" MarkerBrushes="#FFFFFFFF" MarkerOutlines="#FF7446B9 #FF9FB328 #FFF96232 #FF2E9CA6 #FFDC3F76 #FFFF9800 #FF3F51B5 #FF439C47 #FF795548 #FF9A9A9A" TrendLineBrushes="#FFF6CE2F #FFF3654D #FF00C6AC #FF38A8E1 #FFB16FC0 #FFE63C53 #FF8AD662 #FF6F72C0" NegativeBrushes="#FFC62828" NegativeOutlines="#FFC62828"  />
+            </ig:XamTile>
+        </ig:XamTileManager>-->
+    </Grid>
+</Window>
