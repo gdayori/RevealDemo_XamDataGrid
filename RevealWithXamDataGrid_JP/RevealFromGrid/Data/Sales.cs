@@ -101,17 +101,25 @@ namespace Infragistics.Samples.Data.Models
         }
         internal Product Product { get; set; }
         internal Seller Seller { get; set; }
+
+        [DisplayName("営業担当者")]
         public string SalesPerson
         {
             get { return Seller.Name; }
             set { Seller.Name = value; }
         }
+
+        [DisplayName("日付")]
         public DateTime Date { get; set; }
+
+        [DisplayName("地域")]
         public string City
         {
             get { return Seller.City; }
             set { Seller.City = value; }
         }
+
+        [DisplayName("商品名")]
         public string ProductName
         {
             get { return Product.Name; }
@@ -119,12 +127,18 @@ namespace Infragistics.Samples.Data.Models
         }
         internal double Value { get; set; }
         internal string Quarter { get; set; }
+
+        [DisplayName("数量")]
         public int NumberOfUnits { get; set; }
+
+        [DisplayName("商品単価")]
         public double UnitPrice
         {
             get { return Product.UnitPrice; }
             set { Product.UnitPrice = value; }
         }
+
+        [DisplayName("売り上げ")]
         public int AmountOfSale
         {
             get { return (int)UnitPrice * NumberOfUnits; }

@@ -19,7 +19,6 @@ namespace RevealFromGrid.ViewModel
 
         public MainWindowViewModel()
         {
-
             //Get sales data to be bound to grid
             SalesDataSample salesDataSample = new SalesDataSample();
             salesRecords = salesDataSample.SalesData;
@@ -59,6 +58,9 @@ namespace RevealFromGrid.ViewModel
 
         public void Execute(object parameter)
         {
+            // 編集権限の設定
+            UserInfo.permissionLevel = int.Parse(parameter as string);
+            // ダッシュボードを開く
             var newWindow = new Dashboard();
             newWindow.Show();
         }

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\build\Infragistics.Reveal.Sdk.Wpf.props" Condition="Exists('..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\build\Infragistics.Reveal.Sdk.Wpf.props')" />
   <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" />
   <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -41,46 +42,46 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime.Standard, Version=4.7.0.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Antlr4.Runtime.Standard.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Antlr4.Runtime.Standard.dll</HintPath>
     </Reference>
-    <Reference Include="Chart.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Chart.WPF.dll</HintPath>
+    <Reference Include="Chart.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Chart.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Core.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Core.WPF.dll</HintPath>
+    <Reference Include="Core.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Core.WPF.dll</HintPath>
     </Reference>
     <Reference Include="CredentialManagement, Version=1.0.2.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\CredentialManagement.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\CredentialManagement.dll</HintPath>
     </Reference>
     <Reference Include="CSharpAnalytics.Net45, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\CSharpAnalytics.Net45.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\CSharpAnalytics.Net45.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connector.MsSql.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connector.MsSql.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connector.MsSql.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connector.MsSql.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connector.MySql.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connector.MySql.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connector.MySql.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connector.MySql.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connector.Oracle.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connector.Oracle.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connector.Oracle.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connector.Oracle.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connector.Postgres.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connector.Postgres.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connector.Postgres.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connector.Postgres.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connector.Sybase.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connector.Sybase.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connector.Sybase.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connector.Sybase.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connectors.Excel.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connectors.Excel.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connectors.Excel.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connectors.Excel.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connectors.Ssas.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connectors.Ssas.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connectors.Ssas.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connectors.Ssas.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.Connectors.WebConnectors.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.Connectors.WebConnectors.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.Connectors.WebConnectors.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.Connectors.WebConnectors.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics.Reveal.DataLayer.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Infragistics.Reveal.DataLayer.WPF.dll</HintPath>
+    <Reference Include="Infragistics.Reveal.DataLayer.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Infragistics.Reveal.DataLayer.WPF.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.Controls.Charts.Olap.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Charts.XamDataChart.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
@@ -89,58 +90,64 @@
     <Reference Include="InfragisticsWPF4.Controls.Grids.XamPivotGrid.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Layouts.XamTileManager.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Maps.XamMap.v17.2, Version=17.2.20172.580, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\InfragisticsWPF4.Controls.Maps.XamMap.v17.2.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\InfragisticsWPF4.Controls.Maps.XamMap.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.Controls.Menus.XamDataTree.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.DataPresenter.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.DataVisualization.v17.2, Version=17.2.20172.580, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\InfragisticsWPF4.DataVisualization.v17.2.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\InfragisticsWPF4.DataVisualization.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.DataVisualization.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Documents.Core.v17.2, Version=17.2.20172.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\InfragisticsWPF4.Documents.Core.v17.2.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\InfragisticsWPF4.Documents.Core.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.Documents.Excel.v17.2, Version=17.2.20172.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\InfragisticsWPF4.Documents.Excel.v17.2.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\InfragisticsWPF4.Documents.Excel.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.DragDrop.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Editors.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Olap.FlatData.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Olap.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.ReportPlus.Controls.Editors.XamSlider.v16.2, Version=16.2.20162.25, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\InfragisticsWPF4.ReportPlus.Controls.Editors.XamSlider.v16.2.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\InfragisticsWPF4.ReportPlus.Controls.Editors.XamSlider.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.ReportPlus.v16.2, Version=16.2.20162.25, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\InfragisticsWPF4.ReportPlus.v16.2.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\InfragisticsWPF4.ReportPlus.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.v17.2, Version=17.2.20172.580, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\InfragisticsWPF4.v17.2.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\InfragisticsWPF4.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="InfragisticsWPF4.v19.1, Version=19.1.20191.84, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Microsoft.AnalysisServices.AdomdClient.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Microsoft.AnalysisServices.AdomdClient.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql, Version=3.1.6.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Npgsql.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="Pomelo.Data.MySql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Pomelo.Data.MySql.dll</HintPath>
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Pomelo.Data.MySql.dll</HintPath>
     </Reference>
-    <Reference Include="Requests.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\Requests.WPF.dll</HintPath>
+    <Reference Include="Requests.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Requests.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="RVUI.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\RVUI.WPF.dll</HintPath>
+    <Reference Include="RVUI.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\RVUI.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="SharePlusEvo.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\SharePlusEvo.WPF.dll</HintPath>
+    <Reference Include="SharePlusEvo.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\SharePlusEvo.WPF.dll</HintPath>
     </Reference>
     <Reference Include="SkiaSharp, Version=1.68.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\SkiaSharp.1.68.0\lib\net45\SkiaSharp.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Sybase.AdoNet4.AseClient, Version=4.157.104.0, Culture=neutral, PublicKeyToken=95d94fac46c88e1e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\Sybase.AdoNet4.AseClient.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>True</Private>
@@ -180,8 +187,8 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UI.WPF, Version=1.0.617.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.617\lib\net461\UI.WPF.dll</HintPath>
+    <Reference Include="UI.WPF, Version=1.0.661.0, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\lib\net461\UI.WPF.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider">
       <Private>True</Private>
@@ -204,6 +211,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserInfo.cs" />
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -277,6 +285,7 @@
     <Error Condition="!Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets'))" />
     <Error Condition="!Exists('..\packages\SkiaSharp.1.68.0\build\net45\SkiaSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.1.68.0\build\net45\SkiaSharp.targets'))" />
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\build\Infragistics.Reveal.Sdk.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Infragistics.Reveal.Sdk.Wpf.1.0.661\build\Infragistics.Reveal.Sdk.Wpf.props'))" />
   </Target>
   <Import Project="..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" />
   <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" />

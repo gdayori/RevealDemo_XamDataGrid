@@ -15,13 +15,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25px"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Content="Dashboard" Command="{Binding OpenDashboard}" Grid.Column="0"/>
-        <Button Content="Pivot" Command="{Binding OpenBiWindow}" Grid.Column="1"/>
+        <Button Content="ダッシュボードを開く（編集権限）" Command="{Binding OpenDashboard}" CommandParameter="0" Grid.Column="0"/>
+        <Button Content="ダッシュボードを開く（参照権限）" Command="{Binding OpenDashboard}" CommandParameter="1" Grid.Column="1"/>
+        <Button Content="ピボット分析" Command="{Binding OpenBiWindow}" Grid.Column="2"/>
 
         <Custom:XamDataGrid DataSource="{Binding Path=SalesRecords}" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="1"  >
             <Custom:XamDataGrid.FieldLayoutSettings>
