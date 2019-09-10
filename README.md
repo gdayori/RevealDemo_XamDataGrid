@@ -10,12 +10,15 @@ XamDataGridにバインドされているインメモリのデータをRevealの
 - ダッシュボードの保存と再読み込み
 - ユーザ権限によるダッシュボードの編集可否の制限
 
-## Reveal SDKのバージョン
+## Reveal SDK のインストール
 
-以下のバージョンのReveal SDKがインストールされている必要があります。
+このプロジェクトは Reveal SDK の Nuget パッケージをインストールする必要があります。
 
-1.0.661
+以下のサイトよりSDKをダウンロードし、インストールを行います。
 
+[https://www.revealbi.io/jp](https://www.revealbi.io/jp)
+
+こちらのヘルプトピックに従いNugetパッケージソースを設定し、このリポジトリからダウンロードしたプロジェクトに、Reveal SDK の Nuget パッケージを追加しましょう。
 
 ## Infragistics アセンブリのバージョン
 
