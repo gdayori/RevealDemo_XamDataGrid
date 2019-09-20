@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Globalization;
+using System.Reflection;
 
 namespace RevealFromGrid
 {
@@ -46,8 +47,8 @@ namespace RevealFromGrid
             this.revealView1.ImageExported += RevealView1_ImageExported;
 
             //データプロバイダの設定
-            this.revealView1.DataProvider =
-                new EmbedDataProvider(this.DataContext as DashboardViewModel);
+            //this.revealView1.DataProvider =
+            //    new EmbedDataProvider(this.DataContext as DashboardViewModel);
 
             //既に定義ファイルがある場合は読み込み、なければ新規ダッシュボードとして立ち上げる
             var path = @"..\..\Dashboards\Sales.rdash";
@@ -115,29 +116,49 @@ namespace RevealFromGrid
             object sender, DataSourcesRequestedEventArgs e)
         {
 
+            List<object> datasources = new List<object>();
+            List<object> datasourceItems = new List<object>();
 
+            // インメモリデータがデータソースの場合
             var inMemoryDSI1 = new RVInMemoryDataSourceItem("SalesRecords");
             inMemoryDSI1.Title = "案件情報";
             inMemoryDSI1.Description = "SalesRecords";
+            datasourceItems.Add(inMemoryDSI1);
 
             var inMemoryDSI2 = new RVInMemoryDataSourceItem(
                 "SalesAmountByProductData");
             inMemoryDSI2.Title = "商品別_売上合計";
             inMemoryDSI2.Description = "SalesAmountByProductData";
-            
+            datasourceItems.Add(inMemoryDSI2);
+
             var inMemoryDSI3 = new RVInMemoryDataSourceItem("Top30LargeDeals");
             inMemoryDSI3.Title = "大規模案件_Top30";
             inMemoryDSI3.Description = "Top30LargeDeals";
+            datasourceItems.Add(inMemoryDSI3);
 
             var inMemoryDSI4 = new RVInMemoryDataSourceItem("MonthlySalesAmount");
             inMemoryDSI4.Title = "月別_売上合計";
             inMemoryDSI4.Description = "MonthlySalesAmount";
+            datasourceItems.Add(inMemoryDSI4);
 
+            // Excelファイルがデータソースの場合
+            RVLocalFileDataSourceItem localExcelDatasource = new RVLocalFileDataSourceItem();
+            localExcelDatasource.Uri = "local:/SampleData.xlsx";
+            RVExcelDataSourceItem excelDatasourceItem = new RVExcelDataSourceItem(localExcelDatasource);
+            excelDatasourceItem.Title = "Excelデータ";
+            datasourceItems.Add(excelDatasourceItem);
+
+            // CSVファイルがデータソースの場合
+            RVLocalFileDataSourceItem localCsvDatasource = new RVLocalFileDataSourceItem();
+            localCsvDatasource.Uri = "local:/SampleData.csv";
+            RVExcelDataSourceItem csvDatasourceItem = new RVExcelDataSourceItem(localCsvDatasource);
+            csvDatasourceItem.Title = "CSVデータ";
+            datasourceItems.Add(csvDatasourceItem);
 
 
             e.Callback(new RevealDataSources(
                     null,
-                    new List<object>() { inMemoryDSI1, inMemoryDSI2, inMemoryDSI3, inMemoryDSI4},
+                    datasourceItems,
                     false));
         }
 
@@ -153,43 +174,6 @@ namespace RevealFromGrid
             }
             args.SaveFinished();
         }
-
-        //<Grid.RowDefinitions>
-        //    <RowDefinition Height = "35" />
-        //    < RowDefinition Height="*"/>
-        //</Grid.RowDefinitions>
-        //<StackPanel Orientation = "Horizontal" >
-        //    < CheckBox Content="CanEdit" IsChecked="False" Margin="10" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
-        //    <CheckBox Content = "ShowFilters" IsChecked="False" Margin="10" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
-        //    <CheckBox Content = "ShowRefresh" IsChecked="False" Margin="10" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
-        //    <CheckBox Content = "ShowExportImage" IsChecked="False" Margin="10" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
-        //    <CheckBox Content = "ShowChangeVisualization" IsChecked="False" Margin="10" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
-        //</StackPanel>
-        //private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    var settings = new RevealSettings(null);
-        //    switch ((sender as CheckBox).Content.ToString())
-        //    {
-        //        case "CanEdit":
-        //            settings.CanEdit = (bool)(sender as CheckBox).IsChecked;
-        //            break;
-        //        case "ShowFilters":
-        //            settings.ShowFilters = (bool)(sender as CheckBox).IsChecked;
-        //            break;
-        //        case "ShowRefresh":
-        //            settings.ShowRefresh = (bool)(sender as CheckBox).IsChecked;
-        //            break;
-        //        case "ShowExportImage":
-        //            settings.ShowExportImage = (bool)(sender as CheckBox).IsChecked;
-        //            break;
-        //        case "ShowChangeVisualization":
-        //            settings.ShowChangeVisualization = (bool)(sender as CheckBox).IsChecked;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //    this.revealView1.Settings = settings;
-        //}
     }
 
     public class EmbedDataProvider : IRVDataProvider
@@ -200,6 +184,7 @@ namespace RevealFromGrid
             vm = _vm;
         }
 
+        // インメモリデータソースの割り当て
         public Task<IRVInMemoryData> GetData(
             RVInMemoryDataSourceItem dataSourceItem)
         {
@@ -235,32 +220,4 @@ namespace RevealFromGrid
             }
         }
     }
-
-    //public class SampleDataSourceProvider : IRVDataSourceProvider
-    //{
-    //    public Task<RVDataSourceItem> ChangeDashboardFilterDataSourceItemAsync(
-    //         RVDashboardFilter globalFilter, RVDataSourceItem dataSourceItem)
-    //    {
-    //        return Task.FromResult<RVDataSourceItem>(null);
-    //    }
-
-    //    public Task<RVDataSourceItem> ChangeVisualizationDataSourceItemAsync(
-    //         RVVisualization visualization, RVDataSourceItem dataSourceItem)
-    //    {
-
-    //        var csvDsi = dataSourceItem as RVCsvDataSourceItem;
-    //        if (csvDsi != null)
-    //        {
-    //            var inMemDsi = new RVInMemoryDataSourceItem(csvDsi.Id);
-
-    //            return Task.FromResult((RVDataSourceItem)inMemDsi);
-    //        }
-    //        return Task.FromResult((RVDataSourceItem)null);
-
-    //    }
-
-    //}
-
-
-
 }
