@@ -47,8 +47,8 @@ namespace RevealFromGrid
             this.revealView1.ImageExported += RevealView1_ImageExported;
 
             //データプロバイダの設定
-            //this.revealView1.DataProvider =
-            //    new EmbedDataProvider(this.DataContext as DashboardViewModel);
+            this.revealView1.DataProvider =
+                new EmbedDataProvider(this.DataContext as DashboardViewModel);
 
             //既に定義ファイルがある場合は読み込み、なければ新規ダッシュボードとして立ち上げる
             var path = @"..\..\Dashboards\Sales.rdash";
