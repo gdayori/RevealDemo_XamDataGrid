@@ -9,5 +9,6 @@ namespace RevealFromGrid
     static class UserInfo
     {
         static public int permissionLevel = 0;
+        static public bool showGlobalFilter = false;
     }
 }

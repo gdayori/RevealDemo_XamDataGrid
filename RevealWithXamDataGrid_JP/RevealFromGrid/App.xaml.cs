@@ -1,4 +1,5 @@
 ﻿using Infragistics.Sdk;
+using RevealFromGrid.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,9 +25,11 @@ namespace RevealFromGrid
             //CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 
             // ローカルファイルを読み込む場合、LocalDataFilesRootFolderプロパティでファイルの保管場所を指定する
-            var loc = Assembly.GetExecutingAssembly().Location;
-            var dir = System.IO.Path.GetDirectoryName(loc);
-            RevealView.LocalDataFilesRootFolder = dir + @"\Data";
+            //var loc = Assembly.GetExecutingAssembly().Location;
+            //var dir = System.IO.Path.GetDirectoryName(loc);
+            //RevealView.LocalDataFilesRootFolder = dir + @"\Data";
+
+            RevealView.LocalizationProvider = new LocProv();
         }
     }
 }

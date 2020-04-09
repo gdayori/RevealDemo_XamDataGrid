@@ -4,17 +4,81 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RevealFromGrid"
-        xmlns:vm="clr-namespace:RevealFromGrid.ViewModel" xmlns:ig="http://schemas.infragistics.com/xaml" xmlns:Custom="http://infragistics.com/DataPresenter" x:Class="RevealFromGrid.Dashboard"
+        xmlns:vm="clr-namespace:RevealFromGrid.ViewModel" 
+        xmlns:ig="http://schemas.infragistics.com/xaml" 
+        xmlns:Custom="http://infragistics.com/DataPresenter" 
+        xmlns:reveal="http://schemas.infragistics.com/reportplus/xaml"
         xmlns:sdk="clr-namespace:Infragistics.Sdk;assembly=RVUI.WPF"
+        xmlns:editors="http://infragistics.com/Editors"
+        x:Class="RevealFromGrid.Dashboard"
         mc:Ignorable="d"
         Title="Sales Dashboard in this year" Height="600" Width="1000"
+        WindowState="Maximized"
         >
     <Window.DataContext>
         <vm:DashboardViewModel/>
     </Window.DataContext>
     <Grid>
-        <sdk:RevealView x:Name="revealView1"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Margin="10,10,0,10" x:Name="globalFilter" Visibility="Collapsed">
+            <Grid.Resources>
+                <DataTemplate x:Key="TooltipTemplate">
+                    <Grid Background="LightYellow">
+                        <Rectangle Fill="Blue" Opacity="0.65" Margin="0,0,0,0"/>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock Foreground="White" Text="{Binding StringFormat=MMM-yyyy}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="650"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0">期間：</TextBlock>
+                <TextBlock x:Name="lblFrom" Grid.Column="1" Text="2019/1/1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="lblTo" Grid.Column="3" Text="2019/12/31" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ig:XamDateTimeRangeSlider x:Name="dateSlider" Grid.Column="2" MinValue="2016/1/1" MaxValue="2019/12/31">
+
+                    <ig:XamDateTimeRangeSlider.TickMarks>
+                        <ig:DateTimeSliderTickMarks FrequencyType="Months" TickMarksFrequency="1"/>
+                    </ig:XamDateTimeRangeSlider.TickMarks>
+                    <ig:XamSliderDateTimeThumb x:Name="fromThumb" InteractionMode="Lock" Value="2019/1/1" ToolTipTemplate="{StaticResource TooltipTemplate}" ToolTipVisibility="Hidden" ValueChanged="DateFromChanged" TrackFillBrush="Transparent" DragCompleted="fromThumb_DragCompleted" DragStarted="fromThumb_DragStarted"/>
+                    <ig:XamSliderDateTimeThumb x:Name="toThumb" InteractionMode="Lock" Value="2019/12/31" ToolTipTemplate="{StaticResource TooltipTemplate}" ToolTipVisibility="Hidden" ValueChanged="DateToChanged" DragCompleted="toThumb_DragCompleted" DragStarted="toThumb_DragStarted"/>
+
+                </ig:XamDateTimeRangeSlider>
+            </Grid>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="20,0,0,0">
+                <TextBlock>商品：</TextBlock>
+                <CheckBox x:Name="check1" Content="リンゴ" HorizontalAlignment="Left" Margin="10,2,10,0" VerticalAlignment="Top" IsChecked="True" Checked="item_Checked" Unchecked="item_Unchecked"/>
+                <CheckBox x:Name="check2" Content="みかん" HorizontalAlignment="Left" Margin="10,2,10,0" VerticalAlignment="Top" IsChecked="True" Checked="item_Checked" Unchecked="item_Unchecked"/>
+                <CheckBox x:Name="check3" Content="ぶどう" HorizontalAlignment="Left" Margin="10,2,10,0" VerticalAlignment="Top" IsChecked="True" Checked="item_Checked" Unchecked="item_Unchecked"/>
+                <CheckBox x:Name="check4" Content="バナナ" HorizontalAlignment="Left" Margin="10,2,10,0" VerticalAlignment="Top" IsChecked="True" Checked="item_Checked" Unchecked="item_Unchecked"/>
+            </StackPanel>
+        </Grid>
+
+        
+        
+        <!-- RevealViewの定義 -->
+        <sdk:RevealView x:Name="revealView1" Grid.Row="1"/>
+
+        
+        
+        
+        
+        
         <!--<ig:XamTileManager>
             <ig:XamTileManager.NormalModeSettings>
                 <ig:NormalModeSettings TileLayoutOrder="UseExplicitRowColumnOnTile"

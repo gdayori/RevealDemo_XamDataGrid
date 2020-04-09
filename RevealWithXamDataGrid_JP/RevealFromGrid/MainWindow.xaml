@@ -16,6 +16,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25px"/>
@@ -23,9 +24,10 @@
         </Grid.RowDefinitions>
         <Button Content="ダッシュボードを開く（編集権限）" Command="{Binding OpenDashboard}" CommandParameter="0" Grid.Column="0"/>
         <Button Content="ダッシュボードを開く（参照権限）" Command="{Binding OpenDashboard}" CommandParameter="1" Grid.Column="1"/>
-        <Button Content="ピボット分析" Command="{Binding OpenBiWindow}" Grid.Column="2"/>
+        <Button Content="ダッシュボードを開く（外部フィルタ）" Command="{Binding OpenDashboard}" CommandParameter="2" Grid.Column="2"/>
+        <Button Content="ピボット分析" Command="{Binding OpenBiWindow}" Grid.Column="3"/>
 
-        <Custom:XamDataGrid DataSource="{Binding Path=SalesRecords}" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="1"  >
+        <Custom:XamDataGrid DataSource="{Binding Path=SalesRecords}" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="1"  >
             <Custom:XamDataGrid.FieldLayoutSettings>
                 <Custom:FieldLayoutSettings AutoGenerateFields="False" FilterUIType="LabelIcons"/>
             </Custom:XamDataGrid.FieldLayoutSettings>

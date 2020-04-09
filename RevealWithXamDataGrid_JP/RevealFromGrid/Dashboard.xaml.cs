@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.Reflection;
+using Infragistics.Controls.Editors;
 
 namespace RevealFromGrid
 {
@@ -25,6 +26,10 @@ namespace RevealFromGrid
     /// </summary>
     public partial class Dashboard : Window
     {
+        private Boolean _isIgnoreFilterTrigger = true;
+        private DateTime _from = new DateTime(2016, 1, 1);
+        private DateTime _to = new DateTime(2019, 12, 31);
+
         public Dashboard()
         {
 
@@ -32,7 +37,40 @@ namespace RevealFromGrid
             InitializeComponent();
 
             this.Loaded += Dashboard_Loaded;
+            RevealView.FormattingProvider = new CustomFormattingProvider();
+        }
 
+        public class CustomFormattingProvider : IRVFormattingProvider
+        {
+            public RVBaseFormattingService GetFormattingService()
+            {
+                return new CustomFormattingService();
+            }
+        }
+        public class CustomFormattingService : RVBaseFormattingService
+        {
+            //public override string FormatAggregatedDate(DateTime value, RVDashboardDataType type, RVDashboardDateAggregationType aggregation, RVDateFormattingSpec formatting)
+            //{
+            //    return base.FormatAggregatedDate(value, type, aggregation, formatting);
+            //}
+
+            public override string FormatAggregatedDate(DateTime value, RVDashboardDataType type, RVDashboardDateAggregationType aggregation, RVDateFormattingSpec formatting)
+            {
+                if (aggregation == RVDashboardDateAggregationType.Year)
+                {
+                    return string.Format("{0:yyyy年}", value);
+                }
+                if (aggregation == RVDashboardDateAggregationType.Month)
+                {
+                    return string.Format("{0:yyyy年MM月}", value);
+                }
+                if (aggregation == RVDashboardDateAggregationType.Day)
+                {
+                    return string.Format("{0:yyyy年MM月dd日}", value);
+                }
+
+                return base.FormatAggregatedDate(value, type, aggregation, formatting);
+            }
         }
 
         private async void Dashboard_Loaded(object sender, RoutedEventArgs e)
@@ -41,10 +79,12 @@ namespace RevealFromGrid
             this.revealView1.DataSourcesRequested
                 += RevealView1_DataSourcesRequested;
 
-            //ダッシュボード保存のためのイベントハンダラ
+            //ダッシュボード定義情報の保存のためのイベントハンダラ
             this.revealView1.SaveDashboard += RevealView1_SaveDashboard;
 
+            //ダッシュボード画像の保存のためのイベントハンダラ
             this.revealView1.ImageExported += RevealView1_ImageExported;
+            
 
             //データプロバイダの設定
             this.revealView1.DataProvider =
@@ -52,6 +92,10 @@ namespace RevealFromGrid
 
             //既に定義ファイルがある場合は読み込み、なければ新規ダッシュボードとして立ち上げる
             var path = @"..\..\Dashboards\Sales.rdash";
+            if (UserInfo.showGlobalFilter == true)
+            {
+                path = @"..\..\Dashboards\SalesWithGlobalFilter.rdash";
+            }
             var revealView = new RevealView();
             RVDashboard dashboard = null; // nullを設定すると新規ダッシュボード作成となる
 
@@ -84,12 +128,29 @@ namespace RevealFromGrid
             settings.ShowExportImage = true;
             settings.ShowFilters = true;
             settings.ShowRefresh = true;
+            settings.ShowExportToPowerpoint = true;
+            settings.ShowExportToPDF = true;
 
-            //Set Maximized visualization
-            //settings.MaximizedVisualization = settings.Dashboard.Visualizations.First();
 
+            //外部グローバルフィルターの設定
+            if (UserInfo.showGlobalFilter == true)
+            {
+                // Filter settings
+                globalFilter.Visibility = Visibility.Visible;
+                _from = fromThumb.Value;
+                _to = toThumb.Value;
+                settings.ShowFilters = false;
+                _isIgnoreFilterTrigger = false;
+                settings.DateFilter = new RVDateDashboardFilter(RVDateFilterType.CustomRange, new RVDateRange(_from, _to));
+            }
+            else
+            {
+                globalFilter.Visibility = Visibility.Collapsed;
+            }
+
+            // 上記設定情報をRevealViewに適用
             this.revealView1.Settings = settings;
-
+            
             if (UserInfo.permissionLevel != 0 && dashboard is null)
             {
                 //編集権限がなく、ダッシュボードが未だ存在しない場合
@@ -167,12 +228,126 @@ namespace RevealFromGrid
             //Save file
             var data = await args.Serialize();
             var path = @"..\..\Dashboards\Sales.rdash";
+            if (UserInfo.showGlobalFilter == true)
+            {
+                path = @"..\..\Dashboards\SalesWithGlobalFilter.rdash";
+            }
             //using (var output = File.OpenWrite($"{args.Name}.rdash"))
+            File.Delete(path);
             using (var output = File.OpenWrite(path))
             {
                 output.Write(data, 0, data.Length);
             }
             args.SaveFinished();
+        }
+
+        private void DateFromChanged(object sender, RoutedPropertyChangedEventArgs<DateTime> e)
+        {
+            var thumb = sender as XamSliderDateTimeThumb;
+            var value = thumb.Value;
+            lblFrom.Text = AdjustFromDate(value).ToString("yyyy/MM/dd");
+
+            if (revealView1 != null && _isIgnoreFilterTrigger == false)
+            {
+                _from = value;
+                UpdateDateFilter();
+            }
+
+        }
+
+        private void DateToChanged(object sender, RoutedPropertyChangedEventArgs<DateTime> e)
+        {
+
+            var thumb = sender as XamSliderDateTimeThumb;
+            var value = thumb.Value;
+            lblTo.Text = AdjustToDate(value).ToString("yyyy/MM/dd");
+
+            if (revealView1 != null && _isIgnoreFilterTrigger == false)
+            {
+                _to = value;
+                UpdateDateFilter();
+            }
+        }
+
+        private void UpdateDateFilter()
+        {
+            var from = AdjustFromDate(_from);
+            var to = AdjustToDate(_to);
+            var range = new RVDateRange(from, to);
+            var filter = new RVDateDashboardFilter(RVDateFilterType.CustomRange, range);
+
+            revealView1.SetDateFilter(filter);
+        }
+
+        private DateTime AdjustFromDate(DateTime from)
+        {
+            return new DateTime(from.Year, from.Month, 1);
+        }
+
+        private DateTime AdjustToDate(DateTime to)
+        {
+            return new DateTime(to.Year, to.Month, 1).AddMonths(1).AddDays(-1);
+        }
+
+        private void fromThumb_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            _isIgnoreFilterTrigger = false;
+
+            var thumb = sender as XamSliderDateTimeThumb;
+            var value = thumb.Value;
+            _from = value;
+            UpdateDateFilter();
+
+        }
+        private void toThumb_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            _isIgnoreFilterTrigger = false;
+
+            var thumb = sender as XamSliderDateTimeThumb;
+            var value = thumb.Value;
+            _to = value;
+            UpdateDateFilter();
+
+        }
+
+        private void fromThumb_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            _isIgnoreFilterTrigger = true;
+        }
+
+        private void toThumb_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            _isIgnoreFilterTrigger = true;
+
+        }
+
+        private void item_Checked(object sender, RoutedEventArgs e)
+        {
+            if (_isIgnoreFilterTrigger == false)
+                applyCategoryFilter();
+        }
+
+        private void item_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if(_isIgnoreFilterTrigger==false)
+                applyCategoryFilter();
+        }
+
+        private void applyCategoryFilter()
+        {
+            List<object> selectedProducts = new List<object>();
+            selectedProducts.Clear();
+            if (check1.IsChecked == true)
+                selectedProducts.Add(check1.Content);
+            if (check2.IsChecked == true)
+                selectedProducts.Add(check2.Content);
+            if (check3.IsChecked == true)
+                selectedProducts.Add(check3.Content);
+            if (check4.IsChecked == true)
+                selectedProducts.Add(check4.Content);
+            if(selectedProducts.Count == 0)
+                selectedProducts.Add("---");
+            revealView1.SetFilterSelectedValues(revealView1.Dashboard.GetFilterByTitle("商品名"), selectedProducts);
         }
     }
 

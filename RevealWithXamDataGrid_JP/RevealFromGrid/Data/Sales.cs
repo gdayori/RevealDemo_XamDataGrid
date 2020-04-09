@@ -203,7 +203,7 @@ namespace Infragistics.Samples.Data.Models
             //_products = "Apple;Grape;Orage;Banana".Split(';');
             //_sellerNames = "Ellen Adams;Lisa Andrews;William Fox;Walter Harp;Jessica Oxley;Misty Shock;Chris Meyer;Jay Calvin".Split(';');
             //_cities = "Tokyo;Shanghai;Beijing;Singapore;New York;Seoul".Split(';');
-            _products = "リンゴ;みかん;ぶどう;梨".Split(';');
+            _products = "リンゴ;みかん;ぶどう;バナナ".Split(';');
             _sellerNames = "高橋 真紀;東海 誠一;田中 秀美;木下 和子;明山 典央;正門 恵子;松沢 彩子;森上 偉久馬;古田 哲也".Split(';');
             _cities = "東京;神奈川;埼玉;茨木;千葉;栃木;群馬;山梨".Split(';');
             ObservableCollection<Sale> sales = new ObservableCollection<Sale>();
@@ -276,7 +276,8 @@ namespace Infragistics.Samples.Data.Models
             Random a = new Random(Random.Next());
             int day = a.Next(1, 28);
             int month = a.Next(1, 13);
-            int year = a.Next(DateTime.Today.Year - 3, DateTime.Today.Year + 1);
+            int year = a.Next(2016, 2020);
+
             return new DateTime(year, month, day);
         }
         #endregion
