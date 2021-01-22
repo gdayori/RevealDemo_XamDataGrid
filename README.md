@@ -27,3 +27,4 @@ XamDataGridにバインドされているインメモリのデータをRevealの
 
 以下のバージョンのInfragisticsのWPF製品がインストールされている必要があります。
 
+20.2
